@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+
+body {
+	background-color: #0facaa;
+	color: black;
+  padding: 10px 30px 50px 80px;
+	font-size: 28px;
+	font-family: 'Indie Flower', cursive;
+}
