@@ -16,7 +16,7 @@ spec:
         # for local development against minikube registry
         #imagePullPolicy: Never        
         ports:
-        - containerPort: 80
+        - containerPort: 4200
 ---
 apiVersion: v1
 kind: Service
