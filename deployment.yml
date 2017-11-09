@@ -14,7 +14,7 @@ spec:
       - name: mean-docker-demo-client
         image: webapp:1
         # for local development against minikube registry
-        #imagePullPolicy: Never        
+        imagePullPolicy: Always        
         ports:
         - containerPort: 4200
 ---
