@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: angular-server
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: angular-server
+        tier: server
+    spec:
+      containers:
+      - name: angular-server 
+        image: registry.ng.bluemix.net/jiri/angular-server:latest 
+        imagePullPolicy: Always        
+        ports:
+        - name: angular-server
+          containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-server-loadbalancer-service 
+spec:
+  selector:
+    app: angular-server 
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: angular-server 
+  type: LoadBalancer
+
