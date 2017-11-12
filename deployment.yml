@@ -1,32 +1,33 @@
-
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: mean-docker-demo-client
+  name: angular-client
 spec:
   replicas: 2
   template:
     metadata:
       labels:
-        app: mean-docker-demo-client
+        app: angular-client
+        tier: client
     spec:
       containers:
-      - name: mean-docker-demo-client
-        image: webapp:1
+      - name: angular-client 
+        image: registry.ng.bluemix.net/jiri/angular-client:latest 
         imagePullPolicy: Always        
         ports:
-        - name: angular
+        - name: angular-client
           containerPort: 4200
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    app: mean-service
+  name: angular-client-loadbalancer-service 
+spec:
   selector:
-    app: mean-docker-demo-client
+    app: angular-client 
   ports:
     - protocol: TCP
       port: 80
-      targetPort: angular
-  type: NodePort
+      targetPort: angular-client 
+  type: LoadBalancer
 
