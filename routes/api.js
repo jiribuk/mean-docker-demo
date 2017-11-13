@@ -19,24 +19,22 @@ router.post('/article', (req, res) => {
   ArticleModel.create(article, (err, instance) => {
     if (err) {
       console.error(err)
-      res.send(err).status(500)
+      res.status(500).json(err)
     } else {
       console.log(instance)
-      res.send(instance).status(201)
+      res.status(201).json(instance)
     }
   })
 })
 
 router.get('/article', (req, res) => {
-  // Compile model from schema
-  const article = { text: randomString(20), datePublished: new Date() }
   ArticleModel.find({}, (err, articles) => {
     if (err) {
       console.error(err)
-      res.send(err).status(500)
+      res.status(500).json(err)
     } else {
-      console.log(instance)
-      res.send(articles).status(201)
+      console.log(articles.length)
+      res.status(200).json(articles)
     }
   })
 })
