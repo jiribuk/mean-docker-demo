@@ -27,17 +27,16 @@ app.set('port', port)
 const server = http.createServer(app)
 
 // MongoDB
-mongoose.connect(process.env.MONGODB_URL, function (err) {
-  if (err) {
-    console.error(err)
-    throw err
-  }
+// Set up default mongoose connection
+mongoose.connect(process.env.MONGODB_URL, {
+  useMongoClient: true
 })
 
-const db = mongoose.connection
-db.once('open', function () {
-  console.log('mongodb connected.')
-})
+// Get the default connection
+var db = mongoose.connection
+
+// Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 /** Listen on provided port, on all network interfaces.  */
 server.listen(port, () => console.log(`API running on localhost:${port}`))
