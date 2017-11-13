@@ -16,6 +16,12 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
+const logErrors = (err, req, res, next) => {
+  console.error(err.stack)
+  next(err)
+}
+app.use(logErrors)
+
 /** Set our api routes */
 app.use('/', api)
 
