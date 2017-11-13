@@ -18,8 +18,10 @@ router.post('/article', (req, res) => {
   const article = { text: randomString(20), datePublished: new Date() }
   ArticleModel.create(article, (err, instance) => {
     if (err) {
+      console.error(err)
       res.send(err).status(500)
     } else {
+      console.log(instance)
       res.send(instance).status(201)
     }
   })
@@ -30,8 +32,10 @@ router.get('/article', (req, res) => {
   const article = { text: randomString(20), datePublished: new Date() }
   ArticleModel.find({}, (err, articles) => {
     if (err) {
+      console.error(err)
       res.send(err).status(500)
     } else {
+      console.log(instance)
       res.send(articles).status(201)
     }
   })
