@@ -1,32 +1,43 @@
 // server.js
-console.log('server starting');
+console.log('server starting')
 /** Get dependencies */
-const express = require('express');
-const path = require('path');
-const http = require('http');
-const bodyParser = require('body-parser');
+const express = require('express')
+const path = require('path')
+const http = require('http')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
 /** Get our API routes */
-const api = require('./routes/api');
+const api = require('./routes/api')
 
-const app = express();
+const app = express()
 
 /** Parsers for POST data */
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 /** Set our api routes */
-app.use('/', api);
-
+app.use('/', api)
 
 /** Get port from environment and store in Express. */
-const port = process.env.PORT || '3000';
-app.set('port', port);
-
+const port = process.env.PORT || '3000'
+app.set('port', port)
 
 /** Create HTTP server. */
-const server = http.createServer(app);
+const server = http.createServer(app)
 
+// MongoDB
+mongoose.connect(process.env.MONGODB_URL, function (err) {
+  if (err) {
+    console.error(err)
+    throw err
+  }
+})
+
+const db = mongoose.connection
+db.once('open', function () {
+  console.log('mongodb connected.')
+})
 
 /** Listen on provided port, on all network interfaces.  */
-server.listen(port, () => console.log(`API running on localhost:${port}`));
+server.listen(port, () => console.log(`API running on localhost:${port}`))
