@@ -62,13 +62,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: angular-server-loadbalancer-service 
+  name: angular-server-nodeport-service 
 spec:
   selector:
     app: angular-server 
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: angular-server 
-  type: LoadBalancer
+  type: NodePort
 
