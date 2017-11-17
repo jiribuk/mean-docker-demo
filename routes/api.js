@@ -11,6 +11,11 @@ const ArticleModel = require('../models/article')
 /* GET api listing. */
 router.get('/', (req, res) => {
   res.send('Express API works. ENV=' + JSON.stringify(process.env))
+  const dns = require('dns')
+
+  dns.lookup('cos-service-nodeport-service', (err, address, family) => {
+    console.log('cos-service address: %j family: IPv%s', address, family)
+  })
 })
 
 router.post('/article', (req, res) => {
