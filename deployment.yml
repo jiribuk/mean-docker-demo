@@ -21,7 +21,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: angular-client-loadbalancer-service 
+  name: angular-client-nodeport-service 
 spec:
   selector:
     app: angular-client 
@@ -29,5 +29,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: angular-client 
-  type: LoadBalancer
+  type: NodePort 
 
