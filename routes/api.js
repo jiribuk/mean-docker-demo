@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     if (err) {
       res.send(err).status(500)
     } else {
-      res.send('API works.<h1>DNS</h1>' + JSON.stringify(address) + '</br>' + JSON.stringify(family) + '<h1>ENV</h1>' + JSON.stringify(process.env).replace(',', '\n'))
+      res.send('API works.<h1>DNS</h1>' + JSON.stringify(address) + '</br>' + JSON.stringify(family) + '<h1>ENV</h1>' + JSON.stringify(process.env).replace(',', '<br/>'))
     }
   })
 })
